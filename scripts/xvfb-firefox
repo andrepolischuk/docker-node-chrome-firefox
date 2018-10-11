@@ -17,7 +17,7 @@ xvfb=$!
 
 export DISPLAY=:100
 
-firefox $@ &
+firefox-esr $@ &
 ffproc=$!
 
 wait $ffproc

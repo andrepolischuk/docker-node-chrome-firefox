@@ -1,4 +1,14 @@
-FROM buildpack-deps:bionic
+FROM debian:stretch
+
+RUN set -x \
+  && apt-get update \
+  && apt-get install -y --no-install-recommends \
+    ca-certificates \
+    curl \
+    wget \
+    gnupg \
+    procps \
+  && rm -rf /var/lib/apt/lists/*
 
 # Install Node
 
@@ -9,7 +19,6 @@ RUN set -x \
     nodejs \
   && npm install -g npm@latest
 
-# Make 'node' available
 RUN set -x \
   && touch ~/.bashrc \
   && echo 'alias nodejs=node' > ~/.bashrc
@@ -36,8 +45,15 @@ ENV CHROME_BIN /usr/bin/google-chrome
 RUN set -x \
   && apt-get update \
   && apt-get install -y \
+    pkg-mozilla-archive-keyring
+
+RUN echo 'deb http://security.debian.org/ stretch/updates main' >> /etc/apt/sources.list.d/stretch-updates.list
+
+RUN set -x \
+  && apt-get update \
+  && apt-get install -y \
     xvfb \
-    firefox
+    firefox-esr
 
 ADD scripts/xvfb-firefox /usr/bin/xvfb-firefox
 RUN ln -sf /usr/bin/xvfb-firefox /usr/bin/firefox
