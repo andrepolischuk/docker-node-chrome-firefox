@@ -9,6 +9,12 @@
 * Chrome
 * Firefox
 
+## Install
+
+```sh
+docker pull andrepolischuk/node-chrome-firefox
+```
+
 ## Build the image
 
 ```sh
