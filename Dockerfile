@@ -18,7 +18,7 @@ RUN set -x \
   && apt-get update \
   && apt-get install -y \
     nodejs \
-  && npm install -g npm@latest
+  && npm install -g npm@latest yarn@latest
 
 RUN set -x \
   && touch ~/.bashrc \
