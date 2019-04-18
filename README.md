@@ -6,6 +6,7 @@
 
 * Node 8
 * npm
+* yarn
 * Chrome
 * Firefox
 
