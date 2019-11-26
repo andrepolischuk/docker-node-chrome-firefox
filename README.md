@@ -4,7 +4,7 @@
 
 ## Under the hood
 
-* Node 8
+* Node 10
 * npm
 * yarn
 * Chrome
