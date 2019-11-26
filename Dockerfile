@@ -9,10 +9,6 @@ RUN set -x \
     wget \
     gnupg \
     procps \
-    python-pip \
-    python-setuptools \
-    python-wheel \
-    libpython-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Node
@@ -47,18 +43,18 @@ ENV CHROME_BIN /usr/bin/google-chrome
 
 # Install firefox
 
-RUN set -x \
-  && apt-get update \
-  && apt-get install -y \
-    pkg-mozilla-archive-keyring
-
-RUN echo 'deb http://security.debian.org/ stretch/updates main' >> /etc/apt/sources.list.d/stretch-updates.list
+RUN wget -O FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US"
 
 RUN set -x \
   && apt-get update \
   && apt-get install -y \
     xvfb \
-    firefox-esr
+    bzip2 \
+    libdbus-glib-1-2
+
+RUN mkdir /opt/firefox
+RUN tar xjf FirefoxSetup.tar.bz2 -C /opt/
+RUN ln -s /opt/firefox/firefox /usr/bin/firefox-stable
 
 ADD scripts/xvfb-firefox /usr/bin/xvfb-firefox
 RUN ln -sf /usr/bin/xvfb-firefox /usr/bin/firefox
@@ -67,4 +63,11 @@ ENV FIREFOX_BIN /usr/bin/firefox
 
 # Install aws
 
-RUN pip install --upgrade awscli
+RUN set -x \
+  && apt-get update \
+  && apt-get install -y \
+    python-pip \
+    python-setuptools \
+    python-wheel \
+    libpython-dev \
+  && pip install --upgrade awscli
