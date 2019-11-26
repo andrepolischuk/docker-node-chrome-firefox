@@ -9,12 +9,16 @@ RUN set -x \
     wget \
     gnupg \
     procps \
+    python-pip \
+    python-setuptools \
+    python-wheel \
+    libpython-dev \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Node
 
 RUN set -x \
-  && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+  && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
   && apt-get update \
   && apt-get install -y \
     nodejs \
@@ -60,3 +64,7 @@ ADD scripts/xvfb-firefox /usr/bin/xvfb-firefox
 RUN ln -sf /usr/bin/xvfb-firefox /usr/bin/firefox
 
 ENV FIREFOX_BIN /usr/bin/firefox
+
+# Install aws
+
+RUN pip install --upgrade awscli

@@ -4,11 +4,12 @@
 
 ## Under the hood
 
-* Node 10
+* Node
 * npm
 * yarn
 * Chrome
 * Firefox
+* awscli
 
 ## Install
 
