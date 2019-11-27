@@ -41,7 +41,7 @@ RUN ln -sf /usr/bin/xvfb-chrome /usr/bin/google-chrome
 
 ENV CHROME_BIN /usr/bin/google-chrome
 
-# Install firefox
+# Install Firefox
 
 RUN set -x \
   && apt-get update \
@@ -50,7 +50,7 @@ RUN set -x \
     bzip2 \
     libdbus-glib-1-2
 
-RUN wget -q -O - "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64" | tar xjv -C /opt/
+RUN wget -q -O - "https://download.mozilla.org/?product=firefox-60.0-ssl&os=linux64" | tar xjv -C /opt/
 RUN ln -s /opt/firefox/firefox /usr/bin/firefox-stable
 
 ADD scripts/xvfb-firefox /usr/bin/xvfb-firefox
@@ -58,7 +58,7 @@ RUN ln -sf /usr/bin/xvfb-firefox /usr/bin/firefox
 
 ENV FIREFOX_BIN /usr/bin/firefox
 
-# Install aws
+# Install AWS cli
 
 RUN set -x \
   && apt-get update \
