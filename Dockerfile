@@ -43,8 +43,6 @@ ENV CHROME_BIN /usr/bin/google-chrome
 
 # Install firefox
 
-RUN wget -O FirefoxSetup.tar.bz2 "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64&lang=en-US"
-
 RUN set -x \
   && apt-get update \
   && apt-get install -y \
@@ -52,8 +50,7 @@ RUN set -x \
     bzip2 \
     libdbus-glib-1-2
 
-RUN mkdir /opt/firefox
-RUN tar xjf FirefoxSetup.tar.bz2 -C /opt/
+RUN wget -q -O - "https://download.mozilla.org/?product=firefox-latest-ssl&os=linux64" | tar xjv -C /opt/
 RUN ln -s /opt/firefox/firefox /usr/bin/firefox-stable
 
 ADD scripts/xvfb-firefox /usr/bin/xvfb-firefox
