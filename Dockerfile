@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM debian:buster
 
 RUN set -x \
   && apt-get update \
@@ -9,6 +9,8 @@ RUN set -x \
     wget \
     gnupg \
     procps \
+    ssh \
+    rsync \
   && rm -rf /var/lib/apt/lists/*
 
 # Install Node
