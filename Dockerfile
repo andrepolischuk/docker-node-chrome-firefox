@@ -36,6 +36,7 @@ RUN set -x \
   && apt-get update \
   && apt-get install -y \
     xvfb \
+    libxss1 \
     google-chrome-stable
 
 ADD scripts/xvfb-chrome /usr/bin/xvfb-chrome
