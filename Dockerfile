@@ -16,15 +16,20 @@ RUN set -x \
 # Install Node
 
 RUN set -x \
-  && curl -sL https://deb.nodesource.com/setup_12.x | bash - \
+  && curl -sL https://deb.nodesource.com/setup_14.x | bash - \
   && apt-get update \
-  && apt-get install -y \
-    nodejs \
-  && npm install -g npm@latest yarn@latest
+  && apt-get install -y nodejs \
+  && npm install -g npm@latest
 
 RUN set -x \
   && touch ~/.bashrc \
   && echo 'alias nodejs=node' > ~/.bashrc
+
+RUN set -x \
+  && curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - \
+  && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
+  && apt-get update \
+  && apt-get install -y yarn
 
 # Install Chrome
 
