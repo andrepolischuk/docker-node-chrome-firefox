@@ -40,4 +40,8 @@ RUN set -x \
     python-setuptools \
     python-wheel \
     libpython-dev \
-  && pip install --upgrade awscli
+  && pip install --upgrade awscli==1.18.223
+
+# Install Sentry cli
+RUN set -x \
+  && curl -sL https://sentry.io/get-cli/ | sh
